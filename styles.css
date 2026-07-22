@@ -101,6 +101,16 @@ a {
   font-size: clamp(1.15rem, 3vw, 1.5rem);
   text-decoration: none;
   letter-spacing: 0.2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .primary-nav {
@@ -431,6 +441,22 @@ a {
   flex-wrap: wrap;
   gap: 0.75rem 1.2rem;
   align-items: center;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-weight: 700;
+  margin-right: 0.4rem;
+}
+
+.footer-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .footer-grid p {

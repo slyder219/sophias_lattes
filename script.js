@@ -1,6 +1,15 @@
 const navToggle = document.querySelector('.nav-toggle');
 const primaryNav = document.querySelector('#primary-nav');
 
+const defaultLinks = {
+  orderMarketplace: 'https://www.facebook.com/marketplace/',
+  instagram: 'https://www.instagram.com/',
+  facebook: 'https://www.facebook.com/',
+  contactEmail: 'sophlyde@gmail.com'
+};
+
+let siteLinks = { ...defaultLinks };
+
 if (navToggle && primaryNav) {
   navToggle.addEventListener('click', () => {
     const isOpen = primaryNav.classList.toggle('open');
@@ -195,11 +204,54 @@ function initContactForm() {
     const name = String(data.get('name') || '').trim();
     const email = String(data.get('email') || '').trim();
     const message = String(data.get('message') || '').trim();
+    const contactEmail = siteLinks.contactEmail || defaultLinks.contactEmail;
 
     const subject = encodeURIComponent(`Sophia's Lattes Contact - ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-    window.location.href = `mailto:sophlyde@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
   });
+}
+
+function applyLinkConfig() {
+  const anchors = document.querySelectorAll('a[data-link-key]');
+
+  anchors.forEach((anchor) => {
+    const key = anchor.getAttribute('data-link-key');
+    if (!key) return;
+
+    const value = siteLinks[key];
+    if (!value) return;
+
+    const linkType = anchor.getAttribute('data-link-type');
+    if (linkType === 'email') {
+      anchor.href = `mailto:${value}`;
+      if (anchor.getAttribute('data-link-text') === 'email-address') {
+        anchor.textContent = value;
+      }
+      return;
+    }
+
+    anchor.href = value;
+  });
+}
+
+async function loadLinkConfig() {
+  try {
+    const response = await fetch('links.json', { cache: 'no-store' });
+    if (!response.ok) return;
+
+    const incoming = await response.json();
+    if (!incoming || typeof incoming !== 'object') return;
+
+    siteLinks = {
+      ...defaultLinks,
+      ...Object.fromEntries(
+        Object.entries(incoming).filter((entry) => typeof entry[1] === 'string' && entry[1].trim() !== '')
+      )
+    };
+  } catch {
+    siteLinks = { ...defaultLinks };
+  }
 }
 
 function initFooterYear() {
@@ -209,6 +261,12 @@ function initFooterYear() {
   }
 }
 
-initSlideshow();
-initContactForm();
-initFooterYear();
+async function initSite() {
+  await loadLinkConfig();
+  applyLinkConfig();
+  initSlideshow();
+  initContactForm();
+  initFooterYear();
+}
+
+initSite();

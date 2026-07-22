@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content="Sophia's Lattes - Simple, affordable, reliable handcrafted lattes." />
     <title>Sophia's Lattes</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="assets/favicon/android-chrome-192x192.png" />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    <meta name="theme-color" content="#49624a" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +24,16 @@
 
     <header class="site-header">
       <div class="container nav-wrap">
-        <a class="brand" href="#home" aria-label="Sophia's Lattes home">Sophia's Lattes</a>
+        <a class="brand" href="#home" aria-label="Sophia's Lattes home">
+          <img
+            class="brand-logo"
+            src="assets/favicon/android-chrome-512x512.png"
+            alt="Sophia's Lattes logo"
+            width="512"
+            height="512"
+          />
+          <span>Sophia's Lattes</span>
+        </a>
         <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
           <span></span>
           <span></span>
@@ -48,6 +63,7 @@
             <a
               class="btn btn-outline"
               href="https://www.facebook.com/marketplace/"
+              data-link-key="orderMarketplace"
               target="_blank"
               rel="noopener noreferrer"
               >Order Now</a
@@ -68,6 +84,7 @@
             <a
               class="text-link"
               href="https://www.facebook.com/marketplace/"
+              data-link-key="orderMarketplace"
               target="_blank"
               rel="noopener noreferrer"
               >Open Facebook Marketplace</a
@@ -157,9 +174,9 @@
               Reach out for orders, collabs, and updates.
             </p>
             <ul class="contact-list">
-              <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-              <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-              <li><a href="mailto:sophlyde@gmail.com">sophlyde@gmail.com</a></li>
+              <li><a href="https://www.instagram.com/" data-link-key="instagram" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="https://www.facebook.com/" data-link-key="facebook" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+              <li><a href="mailto:sophlyde@gmail.com" data-link-key="contactEmail" data-link-type="email" data-link-text="email-address">sophlyde@gmail.com</a></li>
             </ul>
           </article>
 
@@ -185,9 +202,19 @@
 
     <footer class="site-footer">
       <div class="container footer-grid">
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a>
-        <a href="mailto:sophlyde@gmail.com">Email</a>
+        <a class="footer-brand" href="#home" aria-label="Sophia's Lattes home">
+          <img
+            class="footer-logo"
+            src="assets/favicon/android-chrome-512x512.png"
+            alt="Sophia's Lattes logo"
+            width="512"
+            height="512"
+          />
+          <span>Sophia's Lattes</span>
+        </a>
+        <a href="https://www.instagram.com/" data-link-key="instagram" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.facebook.com/" data-link-key="facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="mailto:sophlyde@gmail.com" data-link-key="contactEmail" data-link-type="email">Email</a>
         <p>Copyright &copy; <span id="year"></span> Sophia's Lattes</p>
       </div>
     </footer>
