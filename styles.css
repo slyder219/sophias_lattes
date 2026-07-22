@@ -1,0 +1,491 @@
+:root {
+  --cream-50: #f7f3ec;
+  --cream-100: #ece2d5;
+  --coffee-700: #3a2a1f;
+  --coffee-900: #1f150f;
+  --sage-500: #49624a;
+  --sage-700: #334734;
+  --clay-300: #c9a88a;
+  --line: rgba(31, 21, 15, 0.16);
+  --shadow: 0 18px 40px rgba(23, 15, 10, 0.14);
+  --radius: 18px;
+  --container: min(1120px, 92vw);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  color: var(--coffee-900);
+  background:
+    radial-gradient(circle at 8% 14%, rgba(73, 98, 74, 0.12), transparent 40%),
+    radial-gradient(circle at 92% 86%, rgba(201, 168, 138, 0.2), transparent 36%),
+    var(--cream-50);
+  line-height: 1.65;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0;
+  top: -100px;
+  padding: 0.65rem 0.9rem;
+  background: var(--coffee-900);
+  color: #fff;
+  z-index: 2000;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+.container {
+  width: var(--container);
+  margin: 0 auto;
+}
+
+.section {
+  padding: clamp(3rem, 5vw, 5rem) 0;
+}
+
+.section h2,
+.section h3,
+.hero h1,
+.brand {
+  font-family: "Fraunces", Georgia, serif;
+}
+
+.section h2 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.15;
+  margin: 0 0 0.65rem;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding-top: env(safe-area-inset-top);
+  backdrop-filter: blur(10px);
+  background: rgba(247, 243, 236, 0.84);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-wrap {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  font-size: clamp(1.15rem, 3vw, 1.5rem);
+  text-decoration: none;
+  letter-spacing: 0.2px;
+}
+
+.primary-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.primary-nav a {
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.45rem 0.65rem;
+  border-radius: 10px;
+}
+
+.primary-nav a:hover,
+.primary-nav a:focus-visible {
+  background: rgba(73, 98, 74, 0.12);
+  outline: none;
+}
+
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: transparent;
+  padding: 0.45rem;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  background: var(--coffee-900);
+  margin: 5px 0;
+}
+
+.hero {
+  position: relative;
+  overflow: clip;
+  min-height: min(82vh, 720px);
+  display: flex;
+  align-items: center;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, rgba(29, 20, 13, 0.78), rgba(29, 20, 13, 0.43)),
+    url("assets/backgrouds/ny-togo-cup.jpg") center/cover no-repeat;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  max-width: 660px;
+  padding: clamp(2rem, 5vw, 4rem) 0;
+}
+
+.eyebrow {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.8rem;
+  opacity: 0.94;
+}
+
+.hero h1 {
+  font-size: clamp(2.1rem, 8vw, 4.2rem);
+  margin: 0.25rem 0 1rem;
+  line-height: 1.03;
+}
+
+.hero p {
+  margin: 0;
+  max-width: 60ch;
+}
+
+.hero-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.btn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0.72rem 1.05rem;
+  border-radius: 999px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.btn-solid {
+  background: var(--sage-500);
+  color: #fff;
+}
+
+.btn-solid:hover,
+.btn-solid:focus-visible {
+  background: var(--sage-700);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.btn-outline {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #fff;
+}
+
+.text-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  text-underline-offset: 3px;
+  font-weight: 700;
+}
+
+.split-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.split-card article,
+.contact-form {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1rem, 3vw, 1.5rem);
+  box-shadow: var(--shadow);
+}
+
+.textured {
+  background:
+    linear-gradient(to bottom, rgba(236, 226, 213, 0.55), rgba(247, 243, 236, 0.65)),
+    url("assets/backgrouds/coffee-word.jpg") center/cover no-repeat;
+}
+
+.prose {
+  background: rgba(247, 243, 236, 0.92);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.2rem, 3vw, 2rem);
+}
+
+.prose p {
+  margin-top: 0;
+}
+
+.section-head {
+  margin-bottom: 1rem;
+}
+
+.slideshow {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #000;
+  box-shadow: var(--shadow);
+}
+
+.slide {
+  margin: 0;
+  display: none;
+  aspect-ratio: 4 / 3;
+}
+
+.slide.is-active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide figcaption {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 0.45rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.slide-btn {
+  position: absolute;
+  top: calc(50% - 22px);
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: none;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.42);
+  cursor: pointer;
+}
+
+.slide-btn:hover,
+.slide-btn:focus-visible {
+  background: rgba(0, 0, 0, 0.62);
+  outline: none;
+}
+
+.slide-btn.prev {
+  left: 0.8rem;
+}
+
+.slide-btn.next {
+  right: 0.8rem;
+}
+
+.slide-dots {
+  position: absolute;
+  display: flex;
+  gap: 0.45rem;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0.8rem;
+}
+
+.slide-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.56);
+  cursor: pointer;
+}
+
+.slide-dot[aria-current="true"] {
+  background: #fff;
+}
+
+.menu-bg {
+  background:
+    linear-gradient(to bottom, rgba(247, 243, 236, 0.9), rgba(247, 243, 236, 0.9)),
+    url("assets/backgrouds/coffee-beans.jpg") center/cover no-repeat;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.menu-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.contact-wrap {
+  align-items: start;
+}
+
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-list li + li {
+  margin-top: 0.5rem;
+}
+
+.contact-list a {
+  font-weight: 700;
+}
+
+.contact-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.25rem;
+  font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+  font: inherit;
+  font-size: 16px;
+  background: #fff;
+}
+
+.form-note {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: var(--cream-100);
+  padding: 1rem 0 calc(1rem + env(safe-area-inset-bottom));
+}
+
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.2rem;
+  align-items: center;
+}
+
+.footer-grid p {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .split-card,
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-toggle {
+    display: inline-block;
+  }
+
+  .primary-nav {
+    position: absolute;
+    top: calc(72px + env(safe-area-inset-top));
+    right: 4vw;
+    left: 4vw;
+    background: rgba(247, 243, 236, 0.98);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 0.75rem;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primary-nav.open {
+    display: flex;
+  }
+
+  .primary-nav a {
+    padding: 0.75rem;
+  }
+
+  .hero {
+    min-height: 70vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
