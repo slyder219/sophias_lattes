@@ -263,7 +263,7 @@ a {
 .textured {
   background:
     linear-gradient(to bottom, rgba(236, 226, 213, 0.55), rgba(247, 243, 236, 0.65)),
-    url("assets/backgrouds/coffee-word.jpg") center/cover no-repeat;
+    url("assets/backgrouds/coffee-beans.jpg") center/cover no-repeat;
 }
 
 .prose {
@@ -366,8 +366,8 @@ a {
 
 .menu-bg {
   background:
-    linear-gradient(to bottom, rgba(247, 243, 236, 0.9), rgba(247, 243, 236, 0.9)),
-    url("assets/backgrouds/coffee-beans.jpg") center/cover no-repeat;
+    linear-gradient(to bottom, rgba(247, 243, 236, 0.78), rgba(247, 243, 236, 0.74)),
+    url("assets/backgrouds/drink-coffee.jpg") center/cover no-repeat;
 }
 
 .menu-grid {
