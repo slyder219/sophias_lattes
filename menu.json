@@ -1,0 +1,174 @@
+{
+  "menu": [
+    {
+      "group": "Coffee Classics",
+      "items": [
+        {
+          "name": "Espresso",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Americano",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Latte",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Macchiato",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Cold Brew",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Frappes",
+          "price": null,
+          "description": null
+        }
+      ]
+    },
+    {
+      "group": "Tea & Non-Coffee",
+      "items": [
+        {
+          "name": "Chamomile",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Chai Latte",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Matcha Latte",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Hot Chocolate",
+          "price": null,
+          "description": null
+        }
+      ]
+    },
+    {
+      "group": "Drizzles",
+      "items": [
+        {
+          "name": "Strawberry",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Chocolate",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Cookie Butter",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Caramel",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Pumpkin",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Cold Foam",
+          "price": null,
+          "description": null
+        }
+      ]
+    },
+    {
+      "group": "Flavors",
+      "items": [
+        {
+          "name": "Vanilla",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Hazelnut",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Caramel",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Mocha",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Chocolate",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Cookie Butter",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Brown Sugar Cinnamon",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Strawberry",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Gingerbread",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Toffee",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Pumpkin",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Almond",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Lavender",
+          "price": null,
+          "description": null
+        },
+        {
+          "name": "Mint",
+          "price": null,
+          "description": null
+        }
+      ]
+    }
+  ]
+}

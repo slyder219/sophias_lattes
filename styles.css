@@ -384,6 +384,51 @@ a {
   box-shadow: var(--shadow);
 }
 
+.menu-group-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.9rem;
+}
+
+.menu-item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item + .menu-item {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--line);
+}
+
+.menu-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+.menu-item-name {
+  font-weight: 700;
+}
+
+.menu-item-price {
+  font-weight: 700;
+  color: var(--sage-700);
+  white-space: nowrap;
+}
+
+.menu-item-description {
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.menu-status {
+  margin: 1rem 0 0;
+  font-weight: 600;
+}
+
 .contact-wrap {
   align-items: start;
 }

@@ -46,6 +46,8 @@ const slidesHost = document.querySelector('.slides');
 const dotsHost = document.querySelector('.slide-dots');
 const prevBtn = document.querySelector('.slide-btn.prev');
 const nextBtn = document.querySelector('.slide-btn.next');
+const menuGrid = document.querySelector('[data-menu-grid]');
+const menuStatus = document.querySelector('[data-menu-status]');
 
 let currentIndex = 0;
 let autoTimer = null;
@@ -261,9 +263,129 @@ function initFooterYear() {
   }
 }
 
+function isNonEmptyString(value) {
+  return typeof value === 'string' && value.trim() !== '';
+}
+
+function formatPrice(price) {
+  if (typeof price === 'number' && Number.isFinite(price)) {
+    return `$${price.toFixed(2)}`;
+  }
+
+  if (isNonEmptyString(price)) {
+    return price.trim();
+  }
+
+  return '';
+}
+
+function normalizeMenuData(raw) {
+  if (!raw || typeof raw !== 'object' || !Array.isArray(raw.menu)) {
+    return [];
+  }
+
+  return raw.menu
+    .filter((group) => group && typeof group === 'object')
+    .map((group) => {
+      const title = isNonEmptyString(group.group) ? group.group.trim() : '';
+      const items = Array.isArray(group.items) ? group.items : [];
+
+      return {
+        title,
+        items: items
+          .filter((item) => item && typeof item === 'object' && isNonEmptyString(item.name))
+          .map((item) => ({
+            name: item.name.trim(),
+            description: isNonEmptyString(item.description) ? item.description.trim() : '',
+            price: formatPrice(item.price)
+          }))
+      };
+    })
+    .filter((group) => group.title !== '' && group.items.length > 0);
+}
+
+function renderMenu(groups) {
+  if (!menuGrid) return;
+
+  menuGrid.innerHTML = '';
+
+  if (groups.length === 0) {
+    if (menuStatus) menuStatus.hidden = false;
+    return;
+  }
+
+  if (menuStatus) menuStatus.hidden = true;
+
+  groups.forEach((group) => {
+    const card = document.createElement('article');
+    card.className = 'menu-card menu-group-card';
+
+    const heading = document.createElement('h3');
+    heading.textContent = group.title;
+
+    const itemList = document.createElement('ul');
+    itemList.className = 'menu-item-list';
+
+    group.items.forEach((item) => {
+      const itemRow = document.createElement('li');
+      itemRow.className = 'menu-item';
+
+      const header = document.createElement('div');
+      header.className = 'menu-item-header';
+
+      const name = document.createElement('span');
+      name.className = 'menu-item-name';
+      name.textContent = item.name;
+      header.appendChild(name);
+
+      if (item.price) {
+        const price = document.createElement('span');
+        price.className = 'menu-item-price';
+        price.textContent = item.price;
+        header.appendChild(price);
+      }
+
+      itemRow.appendChild(header);
+
+      if (item.description) {
+        const description = document.createElement('p');
+        description.className = 'menu-item-description';
+        description.textContent = item.description;
+        itemRow.appendChild(description);
+      }
+
+      itemList.appendChild(itemRow);
+    });
+
+    card.append(heading, itemList);
+    menuGrid.appendChild(card);
+  });
+}
+
+async function loadMenuConfig() {
+  try {
+    const response = await fetch('menu.json', { cache: 'no-store' });
+    if (!response.ok) {
+      return [];
+    }
+
+    const incoming = await response.json();
+    return normalizeMenuData(incoming);
+  } catch {
+    return [];
+  }
+}
+
+async function initMenu() {
+  if (!menuGrid) return;
+  const groups = await loadMenuConfig();
+  renderMenu(groups);
+}
+
 async function initSite() {
   await loadLinkConfig();
   applyLinkConfig();
+  await initMenu();
   initSlideshow();
   initContactForm();
   initFooterYear();
