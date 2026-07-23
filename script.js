@@ -250,29 +250,51 @@ function initContactForm() {
   });
 }
 
-function applyLinkConfig() {
-  const anchors = document.querySelectorAll('a[data-link-key]');
+function getCashappCashtag(value) {
+  const cleaned = value.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  const marker = 'cash.app/';
+  const markerIndex = cleaned.indexOf(marker);
+  if (markerIndex === -1) return cleaned;
 
-  anchors.forEach((anchor) => {
-    const key = anchor.getAttribute('data-link-key');
+  const cashappPath = cleaned.slice(markerIndex + marker.length).replace(/^\$+/, '');
+  return cashappPath ? `$${cashappPath}` : cleaned;
+}
+
+function applyLinkConfig() {
+  const linkNodes = document.querySelectorAll('[data-link-key]');
+
+  linkNodes.forEach((node) => {
+    const key = node.getAttribute('data-link-key');
     if (!key) return;
 
     const value = siteLinks[key];
     if (!value) return;
 
-    const linkType = anchor.getAttribute('data-link-type');
-    if (linkType === 'email') {
-      anchor.href = `mailto:${value}`;
-      if (anchor.getAttribute('data-link-text') === 'email-address') {
-        anchor.textContent = value;
+    const linkTextType = node.getAttribute('data-link-text');
+
+    if (node instanceof HTMLAnchorElement) {
+      const linkType = node.getAttribute('data-link-type');
+      if (linkType === 'email') {
+        node.href = `mailto:${value}`;
+        if (linkTextType === 'email-address') {
+          node.textContent = value;
+        }
+        return;
+      }
+
+      node.href = value;
+      if (linkTextType === 'url-without-protocol') {
+        node.textContent = value.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      } else if (linkTextType === 'cashapp-cashtag') {
+        node.textContent = getCashappCashtag(value);
       }
       return;
     }
 
-    anchor.href = value;
-
-    if (anchor.getAttribute('data-link-text') === 'url-without-protocol') {
-      anchor.textContent = value.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    if (linkTextType === 'cashapp-cashtag') {
+      node.textContent = getCashappCashtag(value);
+    } else if (linkTextType === 'url-without-protocol') {
+      node.textContent = value.replace(/^https?:\/\//, '').replace(/\/$/, '');
     }
   });
 }

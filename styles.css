@@ -281,31 +281,48 @@ a {
   margin-bottom: 1rem;
 }
 
+.menu-order-link {
+  margin-top: 0.85rem;
+}
+
 .slideshow {
   position: relative;
+  width: min(100%, 860px);
+  margin: 0 auto;
+  aspect-ratio: 4 / 3;
   border-radius: var(--radius);
   overflow: hidden;
   background: #000;
   box-shadow: var(--shadow);
 }
 
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .slide {
+  position: absolute;
+  inset: 0;
   margin: 0;
   display: none;
-  aspect-ratio: 4 / 3;
+  width: 100%;
+  height: 100%;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
 }
 
 .slide.is-active {
-  display: grid;
+  display: flex;
 }
 
 .slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .slide figcaption {
@@ -594,145 +611,137 @@ a {
 }
 
 .donation-card {
+  --cash-green: #00d64f;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: min(100%, 420px);
   margin-top: 1.3rem;
-  padding: 1.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 26px;
-  background:
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.28), transparent 28%),
-    linear-gradient(155deg, #1fd760, #0fa948 52%, #097133 100%);
+  padding: 1.1rem;
   color: #fff;
-  box-shadow: 0 22px 42px rgba(11, 111, 50, 0.24);
+  text-decoration: none;
+  background:
+    radial-gradient(circle at top right, rgba(0, 214, 79, 0.45), transparent 42%),
+    linear-gradient(135deg, #191919 0%, #050505 100%);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 22px;
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
 }
 
 .donation-card::after {
   content: '';
   position: absolute;
-  inset: auto -18% -38% auto;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.08) 45%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 500ms ease;
 }
 
-.donation-label,
-.donation-title,
-.donation-copy,
-.donation-handle {
-  margin: 0;
+.donation-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 214, 79, 0.5);
+  box-shadow:
+    0 24px 50px rgba(0, 0, 0, 0.28),
+    0 0 28px rgba(0, 214, 79, 0.15);
 }
 
-.donation-top,
-.donation-account {
+.donation-card:hover::after {
+  transform: translateX(100%);
+}
+
+.donation-card:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.donation-card:focus-visible {
+  outline: 3px solid rgba(0, 214, 79, 0.45);
+  outline-offset: 4px;
+}
+
+.cashapp-logo {
   position: relative;
   z-index: 1;
+  display: grid;
+  place-items: center;
+  flex: 0 0 58px;
+  width: 58px;
+  height: 58px;
+  color: #fff;
+  font-size: 2.3rem;
+  font-weight: 900;
+  line-height: 1;
+  background: var(--cash-green);
+  border-radius: 16px;
+  box-shadow:
+    0 10px 22px rgba(0, 214, 79, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  transform: rotate(-3deg);
 }
 
-.donation-top {
+.cashapp-content {
+  position: relative;
+  z-index: 1;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  line-height: 1.15;
 }
 
-.donation-badge {
-  display: inline-flex;
-  align-items: center;
-  min-height: 30px;
-  padding: 0.25rem 0.7rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.donation-label {
-  font-size: 0.78rem;
-  font-weight: 700;
+.cashapp-label {
+  margin-bottom: 0.15rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.75rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.82;
 }
 
-.donation-title {
-  margin-top: 0.45rem;
-  font-family: "Fraunces", Georgia, serif;
-  font-size: clamp(1.4rem, 4vw, 1.85rem);
-  line-height: 1.08;
-}
-
-.donation-copy {
-  margin-top: 0.7rem;
-  max-width: 34ch;
-  color: rgba(255, 255, 255, 0.9);
-  position: relative;
-  z-index: 1;
-}
-
-.donation-meta {
-  position: relative;
-  z-index: 1;
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.8rem;
-  padding: 0.85rem 0.95rem;
-  border-radius: 18px;
-  background: rgba(5, 54, 24, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(10px);
-}
-
-.donation-chip {
-  width: 42px;
-  height: 30px;
-  border-radius: 9px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.28));
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
-}
-
-.donation-account {
-  display: grid;
-  gap: 0.18rem;
-}
-
-.donation-route {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.86rem;
-  text-decoration: none;
-}
-
-.donation-route:hover,
-.donation-route:focus-visible {
-  color: #fff;
-}
-
-.donation-handle {
-  font-size: 1.05rem;
+.cashapp-name {
+  font-size: clamp(1.3rem, 4vw, 1.7rem);
   font-weight: 800;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.04em;
 }
 
-.donation-btn {
+.cashapp-tag {
+  margin-top: 0.35rem;
+  color: var(--cash-green);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.cashapp-arrow {
   position: relative;
   z-index: 1;
-  margin-top: 1rem;
-  width: 100%;
-  border-color: rgba(255, 255, 255, 0.2);
+  display: grid;
+  place-items: center;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
+  color: #111;
+  font-size: 1.3rem;
+  font-weight: 800;
   background: #fff;
-  color: #0b6f32;
+  border-radius: 50%;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
 }
 
-.donation-btn:hover,
-.donation-btn:focus-visible {
-  background: rgba(255, 255, 255, 0.88);
+.donation-card:hover .cashapp-arrow {
+  color: #fff;
+  background: var(--cash-green);
+  transform: translateX(3px);
 }
 
 .order-summary-section {

@@ -73,6 +73,7 @@
           <a href="#about">About</a>
           <a href="#gallery">Gallery</a>
           <a href="#menu">Menu</a>
+          <a href="order/">Order</a>
           <a href="#donate">Donate</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -172,6 +173,7 @@
           <div class="section-head">
             <h2>Menu</h2>
             <p>Current menu updates will be posted here.</p>
+            <a class="btn btn-solid menu-order-link" href="order/">Order Now</a>
           </div>
 
           <div id="menu-grid" class="menu-grid" data-menu-grid></div>
@@ -192,22 +194,15 @@
               <li><a href="mailto:sophlyde@gmail.com" data-link-key="contactEmail" data-link-type="email" data-link-text="email-address">sophlyde@gmail.com</a></li>
             </ul>
 
-            <div id="donate" class="donation-card" aria-label="Donate with Cash App">
-              <div class="donation-top">
-                <p class="donation-label">Support Sophia's Lattes</p>
-                <span class="donation-badge">Cash App</span>
-              </div>
-              <p class="donation-title">Send a tip or cover your order fast</p>
-              <p class="donation-copy">If you want to support the next round of beans, cups, and campus pop-ups, you can send a donation directly or pay ahead in one tap.</p>
-              <div class="donation-meta" aria-hidden="true">
-                <span class="donation-chip"></span>
-                <div class="donation-account">
-                  <a class="donation-route" href="https://cash.app/$$Sophiaslattes" data-link-key="cashapp" data-link-text="url-without-protocol" target="_blank" rel="noopener noreferrer">cash.app/$$Sophiaslattes</a>
-                  <span class="donation-handle">$Sophiaslattes</span>
-                </div>
-              </div>
-              <a class="btn donation-btn" href="https://cash.app/$$Sophiaslattes" data-link-key="cashapp" target="_blank" rel="noopener noreferrer">Open Cash App</a>
-            </div>
+            <a id="donate" class="donation-card" href="https://cash.app/$$Sophiaslattes" data-link-key="cashapp" target="_blank" rel="noopener noreferrer" aria-label="Pay with Cash App">
+              <span class="cashapp-logo" aria-hidden="true">$</span>
+              <span class="cashapp-content">
+                <span class="cashapp-label">Pay securely with</span>
+                <strong class="cashapp-name">Cash App</strong>
+                <span class="cashapp-tag" data-link-key="cashapp" data-link-text="cashapp-cashtag">$Sophiaslattes</span>
+              </span>
+              <span class="cashapp-arrow" aria-hidden="true">&#8594;</span>
+            </a>
           </article>
 
           <form id="contact-form" class="contact-form" novalidate>
