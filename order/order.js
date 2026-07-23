@@ -36,7 +36,7 @@ function formatCurrency(amount) {
 
 async function loadLinkConfig() {
   try {
-    const response = await fetch(LINKS_PATH, { cache: 'no-store' });
+    const response = await fetch(LINKS_PATH);
     if (!response.ok) return;
 
     const incoming = await response.json();
@@ -77,7 +77,7 @@ function buildMenuOptions(raw) {
 
 async function loadMenu() {
   try {
-    const response = await fetch(MENU_PATH, { cache: 'no-store' });
+    const response = await fetch(MENU_PATH);
     if (!response.ok) return [];
 
     const data = await response.json();

@@ -52,10 +52,13 @@ const prevBtn = document.querySelector('.slide-btn.prev');
 const nextBtn = document.querySelector('.slide-btn.next');
 const menuGrid = document.querySelector('[data-menu-grid]');
 const menuStatus = document.querySelector('[data-menu-status]');
+const slideshowRoot = document.querySelector('.slideshow');
 
 let currentIndex = 0;
 let autoTimer = null;
 const AUTO_DELAY = 4200;
+let slidesLoaded = false;
+let menuLoaded = false;
 
 function getHeaderOffset() {
   const header = document.querySelector('.site-header');
@@ -357,7 +360,7 @@ function applyLinkConfig() {
 
 async function loadLinkConfig() {
   try {
-    const response = await fetch('links.json', { cache: 'no-store' });
+    const response = await fetch('links.json');
     if (!response.ok) return;
 
     const incoming = await response.json();
@@ -397,7 +400,7 @@ function normalizeSlides(raw) {
 
 async function loadSlides() {
   try {
-    const response = await fetch(SLIDESHOW_PATH, { cache: 'no-store' });
+    const response = await fetch(SLIDESHOW_PATH);
     if (!response.ok) return defaultSlides;
 
     const data = await response.json();
@@ -509,7 +512,7 @@ function renderMenu(groups) {
 
 async function loadMenuConfig() {
   try {
-    const response = await fetch('menu.json', { cache: 'no-store' });
+    const response = await fetch('menu.json');
     if (!response.ok) {
       return [];
     }
@@ -522,19 +525,80 @@ async function loadMenuConfig() {
 }
 
 async function initMenu() {
-  if (!menuGrid) return;
+  if (!menuGrid || menuLoaded) return;
   const groups = await loadMenuConfig();
   renderMenu(groups);
+  menuLoaded = true;
+}
+
+async function initSlidesOnDemand() {
+  if (!slideshowRoot || slidesLoaded) return;
+
+  const loadedSlides = await loadSlides();
+  slideData.splice(0, slideData.length, ...loadedSlides);
+  initSlideshow();
+  slidesLoaded = true;
+}
+
+function observeWhenVisible(selector, onVisible, rootMargin = '240px 0px') {
+  const target = document.querySelector(selector);
+  if (!(target instanceof HTMLElement)) return;
+
+  if (!('IntersectionObserver' in window)) {
+    onVisible(target);
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      onVisible(target);
+    });
+  }, { rootMargin });
+
+  observer.observe(target);
+}
+
+function initDeferredSections() {
+  observeWhenVisible('#about', (section) => {
+    section.classList.add('is-visible');
+  }, '120px 0px');
+
+  observeWhenVisible('#gallery', () => {
+    void initSlidesOnDemand();
+  }, '240px 0px');
+
+  observeWhenVisible('#menu', (section) => {
+    section.classList.add('is-visible');
+    void initMenu();
+  }, '240px 0px');
+
+  const warmDeferredSections = () => {
+    document.querySelector('#about')?.classList.add('is-visible');
+
+    if (!slidesLoaded) {
+      void initSlidesOnDemand();
+    }
+
+    if (!menuLoaded) {
+      document.querySelector('#menu')?.classList.add('is-visible');
+      void initMenu();
+    }
+  };
+
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(warmDeferredSections, { timeout: 2500 });
+  } else {
+    window.setTimeout(warmDeferredSections, 1500);
+  }
 }
 
 async function initSite() {
   initHashScrolling();
   await loadLinkConfig();
   applyLinkConfig();
-  const loadedSlides = await loadSlides();
-  slideData.splice(0, slideData.length, ...loadedSlides);
-  await initMenu();
-  initSlideshow();
+  initDeferredSections();
   initContactForm();
   initFooterYear();
 }
