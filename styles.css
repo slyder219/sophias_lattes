@@ -504,8 +504,48 @@ a {
   object-fit: cover;
 }
 
+.fineprint-link {
+  opacity: 0.72;
+  font-size: 0.94rem;
+  text-underline-offset: 3px;
+}
+
+.fineprint-link:hover,
+.fineprint-link:focus-visible {
+  opacity: 1;
+}
+
 .footer-grid p {
   margin: 0;
+}
+
+.legal-page .section {
+  padding-top: clamp(2rem, 4vw, 3.25rem);
+}
+
+.legal-prose {
+  max-width: 880px;
+}
+
+.legal-prose h1 {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(2rem, 6vw, 3rem);
+  margin: 0.25rem 0 1.4rem;
+  line-height: 1.1;
+}
+
+.legal-prose h2 {
+  margin-top: 1.25rem;
+}
+
+.legal-eyebrow {
+  color: var(--sage-700);
+  margin: 0;
+}
+
+.legal-prose ul {
+  margin: 0.45rem 0 0.95rem;
+  padding-left: 1.2rem;
 }
 
 @media (max-width: 900px) {

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Sophia's Lattes fine print and policy information." />
+    <title>Fine Print | Sophia's Lattes</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="../assets/favicon/android-chrome-192x192.png" />
+    <link rel="manifest" href="../assets/favicon/site.webmanifest" />
+    <meta name="theme-color" content="#49624a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="legal-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../" aria-label="Sophia's Lattes home">
+          <img
+            class="brand-logo"
+            src="../assets/favicon/android-chrome-512x512.png"
+            alt="Sophia's Lattes logo"
+            width="512"
+            height="512"
+          />
+          <span>Sophia's Lattes</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="main" class="section">
+      <div class="container prose legal-prose">
+        <p class="eyebrow legal-eyebrow">Policy Information</p>
+        <h1>Fine Print</h1>
+
+        <h2>Responsibility</h2>
+        <p>
+          By placing an order, making a purchase, submitting payment, or interacting with Sophia's Lattes services,
+          you acknowledge personal responsibility for your decisions and use of products. To the fullest extent
+          permitted by law, Sophia's Lattes and its team are not liable for indirect, incidental, or consequential
+          issues connected to customer use, misuse, handling, or consumption of products.
+        </p>
+
+        <h2>Conduct and Safety</h2>
+        <p>
+          Sophia's Lattes maintains a zero-tolerance policy for unlawful or threatening behavior. Any harassment,
+          theft, trespassing, intimidation, or other criminal conduct may result in refused service and notification
+          of local authorities.
+        </p>
+        <p>Customers and visitors may not:</p>
+        <ul>
+          <li>Harass staff or other customers.</li>
+          <li>Arrive at private or restricted locations when not invited.</li>
+          <li>Steal products, supplies, or property.</li>
+          <li>Provide knowingly false information in connection with orders or payment.</li>
+          <li>Use products to harm, threaten, or harass others.</li>
+        </ul>
+
+        <h2>Allergy and Ingredient Notice</h2>
+        <p>
+          All coffee drinks are prepared with espresso. Whole milk is currently the only milk option offered.
+          Flavorings and add-ins may contain nuts or other allergens.
+        </p>
+        <p>
+          Customers are responsible for reviewing ingredient risks before purchase. Sophia's Lattes is not responsible
+          for allergic reactions or health issues related to undisclosed sensitivities, ingredient exposure, or
+          product consumption.
+        </p>
+
+        <h2>Updates to This Page</h2>
+        <p>
+          This fine print may be updated at any time to reflect business, safety, or legal needs. Continued use of
+          Sophia's Lattes services after updates constitutes acceptance of the revised terms.
+        </p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <a class="footer-brand" href="../" aria-label="Sophia's Lattes home">
+          <img
+            class="footer-logo"
+            src="../assets/favicon/android-chrome-512x512.png"
+            alt="Sophia's Lattes logo"
+            width="512"
+            height="512"
+          />
+          <span>Sophia's Lattes</span>
+        </a>
+        <p>Copyright &copy; <span id="year"></span> Sophia's Lattes</p>
+      </div>
+    </footer>
+
+    <script>
+      const yearNode = document.querySelector('#year');
+      if (yearNode) yearNode.textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>
