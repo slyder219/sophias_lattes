@@ -57,6 +57,62 @@ let currentIndex = 0;
 let autoTimer = null;
 const AUTO_DELAY = 4200;
 
+function getHeaderOffset() {
+  const header = document.querySelector('.site-header');
+  const headerHeight = header instanceof HTMLElement ? header.getBoundingClientRect().height : 0;
+  return Math.ceil(headerHeight + 16);
+}
+
+function syncAnchorOffset() {
+  document.documentElement.style.setProperty('--anchor-offset', `${getHeaderOffset()}px`);
+}
+
+function scrollToHashTarget(hash, behavior = 'smooth') {
+  if (!hash || hash === '#') return;
+
+  const target = document.querySelector(hash);
+  if (!(target instanceof HTMLElement)) return;
+
+  const top = target.getBoundingClientRect().top + window.scrollY - getHeaderOffset();
+  window.scrollTo({ top: Math.max(0, top), behavior });
+}
+
+function initHashScrolling() {
+  syncAnchorOffset();
+
+  window.addEventListener('resize', syncAnchorOffset);
+  window.addEventListener('hashchange', () => {
+    scrollToHashTarget(window.location.hash, 'smooth');
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (event) => {
+      const href = anchor.getAttribute('href');
+      if (!href || href === '#') return;
+
+      const target = document.querySelector(href);
+      if (!(target instanceof HTMLElement)) return;
+
+      event.preventDefault();
+      const nextUrl = `${window.location.pathname}${window.location.search}${href}`;
+      window.history.pushState(null, '', nextUrl);
+      scrollToHashTarget(href, 'smooth');
+    });
+  });
+
+  const alignHash = () => {
+    syncAnchorOffset();
+    scrollToHashTarget(window.location.hash, 'auto');
+  };
+
+  if (window.location.hash) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(alignHash);
+    });
+    window.addEventListener('load', alignHash, { once: true });
+  }
+}
+
 function renderSlides() {
   if (!slidesHost || !dotsHost) return;
 
@@ -472,6 +528,7 @@ async function initMenu() {
 }
 
 async function initSite() {
+  initHashScrolling();
   await loadLinkConfig();
   applyLinkConfig();
   const loadedSlides = await loadSlides();

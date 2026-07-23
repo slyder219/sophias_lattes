@@ -10,6 +10,7 @@
   --shadow: 0 18px 40px rgba(23, 15, 10, 0.14);
   --radius: 18px;
   --container: min(1120px, 92vw);
+  --anchor-offset: 96px;
 }
 
 * {
@@ -19,6 +20,11 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  scroll-padding-top: var(--anchor-offset);
+}
+
+[id] {
+  scroll-margin-top: var(--anchor-offset);
 }
 
 body {
