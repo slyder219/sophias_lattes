@@ -24,7 +24,7 @@ if (navToggle && primaryNav) {
   });
 }
 
-const slideData = [
+const defaultSlides = [
   {
     src: 'assets/slideshow/mug-table.jpg',
     alt: 'Latte mug on a table',
@@ -41,6 +41,9 @@ const slideData = [
     caption: 'Crafted for simple daily joy.'
   }
 ];
+
+const slideData = [];
+const SLIDESHOW_PATH = 'slideshow.json';
 
 const slidesHost = document.querySelector('.slides');
 const dotsHost = document.querySelector('.slide-dots');
@@ -263,6 +266,33 @@ function initFooterYear() {
   }
 }
 
+function normalizeSlides(raw) {
+  if (!raw || typeof raw !== 'object' || !Array.isArray(raw.slides)) {
+    return [];
+  }
+
+  return raw.slides
+    .filter((slide) => slide && typeof slide === 'object' && typeof slide.src === 'string' && slide.src.trim() !== '')
+    .map((slide, index) => ({
+      src: slide.src.trim(),
+      alt: typeof slide.alt === 'string' && slide.alt.trim() !== '' ? slide.alt.trim() : `Gallery image ${index + 1}`,
+      caption: typeof slide.caption === 'string' && slide.caption.trim() !== '' ? slide.caption.trim() : ''
+    }));
+}
+
+async function loadSlides() {
+  try {
+    const response = await fetch(SLIDESHOW_PATH, { cache: 'no-store' });
+    if (!response.ok) return defaultSlides;
+
+    const data = await response.json();
+    const slides = normalizeSlides(data);
+    return slides.length > 0 ? slides : defaultSlides;
+  } catch {
+    return defaultSlides;
+  }
+}
+
 function isNonEmptyString(value) {
   return typeof value === 'string' && value.trim() !== '';
 }
@@ -385,6 +415,8 @@ async function initMenu() {
 async function initSite() {
   await loadLinkConfig();
   applyLinkConfig();
+  const loadedSlides = await loadSlides();
+  slideData.splice(0, slideData.length, ...loadedSlides);
   await initMenu();
   initSlideshow();
   initContactForm();

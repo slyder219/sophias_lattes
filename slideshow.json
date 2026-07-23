@@ -1,0 +1,19 @@
+{
+  "slides": [
+    {
+      "src": "assets/slideshow/mug-table.jpg",
+      "alt": "Latte mug on a table",
+      "caption": "Dorm-room roots, cafe-level care."
+    },
+    {
+      "src": "assets/slideshow/matcha-outside.jpg",
+      "alt": "Iced matcha outside",
+      "caption": "Fresh ideas inspired by campus energy."
+    },
+    {
+      "src": "assets/slideshow/latte-chocholate.jpg",
+      "alt": "Chocolate latte close-up",
+      "caption": "Crafted for simple daily joy."
+    }
+  ]
+}
