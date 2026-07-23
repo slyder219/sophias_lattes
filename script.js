@@ -27,19 +27,19 @@ if (navToggle && primaryNav) {
 
 const defaultSlides = [
   {
-    src: 'assets/slideshow/outside-mug.avif',
-    alt: 'Latte mug outdoors',
-    caption: 'Dorm-room roots, cafe-level care.'
+    src: 'assets/slideshow/IMG_0993.avif',
+    alt: 'Sophia\'s Lattes gallery image',
+    caption: 'A fresh Sophia\'s Lattes moment.'
   },
   {
-    src: 'assets/slideshow/inside-mug.avif',
-    alt: 'Latte mug indoors',
-    caption: 'Fresh ideas inspired by campus energy.'
+    src: 'assets/slideshow/5D9DD774-FEC9-4F41-B24D-84F2E0B277CC.avif',
+    alt: 'Sophia\'s Lattes gallery image',
+    caption: 'Simple drinks, made with care.'
   },
   {
-    src: 'assets/slideshow/top-down-mug.avif',
-    alt: 'Top-down view of a latte mug',
-    caption: 'Crafted for simple daily joy.'
+    src: 'assets/slideshow/2513C594-46B6-4542-9397-69A5CA0F0C0B.avif',
+    alt: 'Sophia\'s Lattes gallery image',
+    caption: 'Campus coffee energy, bottled into every cup.'
   }
 ];
 
