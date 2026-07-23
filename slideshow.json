@@ -1,19 +1,159 @@
 {
   "slides": [
     {
-      "src": "assets/slideshow/mug-table.jpg",
-      "alt": "Latte mug on a table",
-      "caption": "Dorm-room roots, cafe-level care."
+      "src": "assets/slideshow/IMG_0993.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "A fresh Sophia's Lattes moment."
     },
     {
-      "src": "assets/slideshow/matcha-outside.jpg",
-      "alt": "Iced matcha outside",
+      "src": "assets/slideshow/5D9DD774-FEC9-4F41-B24D-84F2E0B277CC.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Simple drinks, made with care."
+    },
+    {
+      "src": "assets/slideshow/top-down-mug.avif",
+      "alt": "Top-down view of a latte mug",
+      "caption": "Crafted for simple daily joy."
+    },
+    {
+      "src": "assets/slideshow/2513C594-46B6-4542-9397-69A5CA0F0C0B.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Campus coffee energy, bottled into every cup."
+    },
+    {
+      "src": "assets/slideshow/IMG_1963.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "A fresh Sophia's Lattes moment."
+    },
+    {
+      "src": "assets/slideshow/FullSizeRender.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Simple drinks, made with care."
+    },
+    {
+      "src": "assets/slideshow/6736381F-043E-44A6-9110-3BC0970D3F84.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Built around comfort, coffee, and good taste."
+    },
+    {
+      "src": "assets/slideshow/inside-mug.avif",
+      "alt": "Latte mug indoors",
       "caption": "Fresh ideas inspired by campus energy."
     },
     {
-      "src": "assets/slideshow/latte-chocholate.jpg",
-      "alt": "Chocolate latte close-up",
-      "caption": "Crafted for simple daily joy."
+      "src": "assets/slideshow/3A390B84-4508-40CC-990E-8791CEA64303.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Coffee that keeps the day moving."
+    },
+    {
+      "src": "assets/slideshow/IMG_0217.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "A fresh Sophia's Lattes moment."
+    },
+    {
+      "src": "assets/slideshow/B0A64251-8359-412E-9F53-18F8AFC7C9A3.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Made to feel easy, warm, and reliable."
+    },
+    {
+      "src": "assets/slideshow/IMG_1964.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Simple drinks, made with care."
+    },
+    {
+      "src": "assets/slideshow/outside-mug.avif",
+      "alt": "Latte mug outdoors",
+      "caption": "Dorm-room roots, cafe-level care."
+    },
+    {
+      "src": "assets/slideshow/IMG_1321.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Built around comfort, coffee, and good taste."
+    },
+    {
+      "src": "assets/slideshow/53469026-D18A-4BAA-BA08-CA846567430D.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Coffee that keeps the day moving."
+    },
+    {
+      "src": "assets/slideshow/IMG_0642.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "A fresh Sophia's Lattes moment."
+    },
+    {
+      "src": "assets/slideshow/88786F55-9D59-4CC3-A310-89A6BC51B3AB.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Simple drinks, made with care."
+    },
+    {
+      "src": "assets/slideshow/IMG_1354(1).avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Made to feel easy, warm, and reliable."
+    },
+    {
+      "src": "assets/slideshow/2E777170-9536-4E37-93B7-C5FD444DA95D.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Built around comfort, coffee, and good taste."
+    },
+    {
+      "src": "assets/slideshow/IMG_0396.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Coffee that keeps the day moving."
+    },
+    {
+      "src": "assets/slideshow/D84AE3A8-293F-4214-A2A9-4F267066EF93.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "A fresh Sophia's Lattes moment."
+    },
+    {
+      "src": "assets/slideshow/AC76F5AC-BD19-45F7-8384-8BBB779321D6.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Simple drinks, made with care."
+    },
+    {
+      "src": "assets/slideshow/IMG_1576.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Made to feel easy, warm, and reliable."
+    },
+    {
+      "src": "assets/slideshow/01F4AF57-2A23-493E-B845-B8E8D57ADC05.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Built around comfort, coffee, and good taste."
+    },
+    {
+      "src": "assets/slideshow/IMG_0847(2).avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Coffee that keeps the day moving."
+    },
+    {
+      "src": "assets/slideshow/IMG_0133.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "A fresh Sophia's Lattes moment."
+    },
+    {
+      "src": "assets/slideshow/IMG_0951.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Simple drinks, made with care."
+    },
+    {
+      "src": "assets/slideshow/FullSizeRender(1).avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Made to feel easy, warm, and reliable."
+    },
+    {
+      "src": "assets/slideshow/IMG_0361.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Built around comfort, coffee, and good taste."
+    },
+    {
+      "src": "assets/slideshow/IMG_1147.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "Coffee that keeps the day moving."
+    },
+    {
+      "src": "assets/slideshow/IMG_0373.avif",
+      "alt": "Sophia's Lattes gallery image",
+      "caption": "A fresh Sophia's Lattes moment."
     }
   ]
 }

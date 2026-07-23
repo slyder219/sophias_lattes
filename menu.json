@@ -5,32 +5,32 @@
       "items": [
         {
           "name": "Espresso",
-          "price": null,
+          "price": 2.00,
           "description": null
         },
         {
           "name": "Americano",
-          "price": null,
+          "price": 3.00,
           "description": null
         },
         {
           "name": "Latte",
-          "price": null,
+          "price": 3.00,
           "description": null
         },
         {
           "name": "Macchiato",
-          "price": null,
+          "price": 4.00,
           "description": null
         },
         {
           "name": "Cold Brew",
-          "price": null,
+          "price": 4.00,
           "description": null
         },
         {
           "name": "Frappes",
-          "price": null,
+          "price": 6.00,
           "description": null
         }
       ]
@@ -40,22 +40,22 @@
       "items": [
         {
           "name": "Chamomile",
-          "price": null,
+          "price": 1.00,
           "description": null
         },
         {
           "name": "Chai Latte",
-          "price": null,
+          "price": 4.00,
           "description": null
         },
         {
           "name": "Matcha Latte",
-          "price": null,
+          "price": 5.00,
           "description": null
         },
         {
           "name": "Hot Chocolate",
-          "price": null,
+          "price": 2.00,
           "description": null
         }
       ]
@@ -65,32 +65,32 @@
       "items": [
         {
           "name": "Strawberry",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Chocolate",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Cookie Butter",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Caramel",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Pumpkin",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Cold Foam",
-          "price": null,
+          "price": 0.50,
           "description": null
         }
       ]
@@ -100,72 +100,72 @@
       "items": [
         {
           "name": "Vanilla",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Hazelnut",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Caramel",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Mocha",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Chocolate",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Cookie Butter",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Brown Sugar Cinnamon",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Strawberry",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Gingerbread",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Toffee",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Pumpkin",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Almond",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Lavender",
-          "price": null,
+          "price": 0.50,
           "description": null
         },
         {
           "name": "Mint",
-          "price": null,
+          "price": 0.50,
           "description": null
         }
       ]

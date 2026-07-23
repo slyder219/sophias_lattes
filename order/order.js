@@ -1,5 +1,9 @@
 const MENU_PATH = '../menu.json';
+const LINKS_PATH = '../links.json';
 const WEB3_ENDPOINT = 'https://api.web3forms.com/submit';
+const defaultLinks = {
+  cashapp: 'https://cash.app/$$Sophiaslattes'
+};
 
 const orderForm = document.querySelector('#order-form');
 const orderItemsHost = document.querySelector('#order-items');
@@ -7,8 +11,13 @@ const addOrderItemBtn = document.querySelector('#add-order-item');
 const submitOrderBtn = document.querySelector('#submit-order');
 const orderStatus = document.querySelector('#order-status');
 const orderMessageInput = document.querySelector('#order-message');
+const orderTotalNode = document.querySelector('[data-order-total]');
+const orderTotalInlineNode = document.querySelector('[data-order-total-inline]');
+const orderPaymentNote = document.querySelector('[data-order-payment-note]');
+const orderCashappLink = document.querySelector('[data-order-cashapp-link]');
 
 let menuOptions = [];
+let siteLinks = { ...defaultLinks };
 
 function setFooterYear() {
   const yearNode = document.querySelector('#year');
@@ -19,6 +28,29 @@ function setFooterYear() {
 
 function slugify(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+function formatCurrency(amount) {
+  return `$${amount.toFixed(2)}`;
+}
+
+async function loadLinkConfig() {
+  try {
+    const response = await fetch(LINKS_PATH, { cache: 'no-store' });
+    if (!response.ok) return;
+
+    const incoming = await response.json();
+    if (!incoming || typeof incoming !== 'object') return;
+
+    siteLinks = {
+      ...defaultLinks,
+      ...Object.fromEntries(
+        Object.entries(incoming).filter((entry) => typeof entry[1] === 'string' && entry[1].trim() !== '')
+      )
+    };
+  } catch {
+    siteLinks = { ...defaultLinks };
+  }
 }
 
 function buildMenuOptions(raw) {
@@ -35,9 +67,10 @@ function buildMenuOptions(raw) {
       .filter((item) => item && typeof item === 'object' && typeof item.name === 'string' && item.name.trim() !== '')
       .map((item) => ({
         value: `${slugify(group.group)}::${slugify(item.name)}`,
-        label: `${item.name.trim()} (${group.group.trim()})`,
+        label: `${item.name.trim()} (${group.group.trim()})${typeof item.price === 'number' ? ` - ${formatCurrency(item.price)}` : ''}`,
         itemName: item.name.trim(),
-        groupName: group.group.trim()
+        groupName: group.group.trim(),
+        price: typeof item.price === 'number' && Number.isFinite(item.price) ? item.price : 0
       }));
   });
 }
@@ -134,12 +167,42 @@ function collectOrderItems() {
     items.push({
       itemName: option.itemName,
       groupName: option.groupName,
+      price: option.price,
+      lineTotal: option.price * qty,
       quantity: qty,
       notes
     });
   });
 
   return items;
+}
+
+function getCashappDisplayText() {
+  return siteLinks.cashapp.replace(/^https?:\/\//, '').replace(/\/$/, '');
+}
+
+function updateOrderPaymentNote(orderItems = collectOrderItems()) {
+  const total = orderItems.reduce((sum, item) => sum + item.lineTotal, 0);
+  const formattedTotal = formatCurrency(total);
+
+  if (orderTotalNode) {
+    orderTotalNode.textContent = formattedTotal;
+  }
+
+  if (orderTotalInlineNode) {
+    orderTotalInlineNode.textContent = formattedTotal;
+  }
+
+  if (orderCashappLink) {
+    orderCashappLink.href = siteLinks.cashapp;
+    orderCashappLink.textContent = getCashappDisplayText();
+  }
+
+  if (orderPaymentNote) {
+    orderPaymentNote.hidden = orderItems.length === 0;
+  }
+
+  return total;
 }
 
 function buildOrderMessage(formData, orderItems) {
@@ -149,10 +212,11 @@ function buildOrderMessage(formData, orderItems) {
   const pickupDate = String(formData.get('pickup_date') || '').trim();
   const pickupTime = String(formData.get('pickup_time') || '').trim();
   const generalNotes = String(formData.get('general_notes') || '').trim();
+  const total = orderItems.reduce((sum, item) => sum + item.lineTotal, 0);
 
   const orderLines = orderItems.map((item, idx) => {
     const notePart = item.notes ? ` | Notes: ${item.notes}` : '';
-    return `${idx + 1}. ${item.itemName} (${item.groupName}) | Qty: ${item.quantity}${notePart}`;
+    return `${idx + 1}. ${item.itemName} (${item.groupName}) | Qty: ${item.quantity} | Line Total: ${formatCurrency(item.lineTotal)}${notePart}`;
   });
 
   return [
@@ -164,6 +228,9 @@ function buildOrderMessage(formData, orderItems) {
     '',
     'Order Items:',
     ...orderLines,
+    '',
+    `Estimated Total: ${formatCurrency(total)}`,
+    `Cash App Expedite Link: ${siteLinks.cashapp}`,
     '',
     `General Notes: ${generalNotes || 'None'}`
   ].join('\n');
@@ -231,6 +298,7 @@ async function submitOrder(event) {
     orderForm.reset();
     orderItemsHost.innerHTML = '';
     addOrderItem();
+    updateOrderPaymentNote();
     setStatus('Order submitted successfully. We will contact you shortly.', 'is-success');
   } catch {
     setStatus('Something went wrong while sending your order. Please try again.', 'is-error');
@@ -258,7 +326,22 @@ function attachOrderEvents() {
         addOrderItem();
       }
       refreshItemNames();
+      updateOrderPaymentNote();
     }
+  });
+
+  orderItemsHost.addEventListener('input', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (!target.closest('[data-order-item]')) return;
+    updateOrderPaymentNote();
+  });
+
+  orderItemsHost.addEventListener('change', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    if (!target.closest('[data-order-item]')) return;
+    updateOrderPaymentNote();
   });
 }
 
@@ -266,6 +349,7 @@ async function initOrderPage() {
   setFooterYear();
   if (!orderForm || !orderItemsHost || !addOrderItemBtn) return;
 
+  await loadLinkConfig();
   menuOptions = await loadMenu();
   if (menuOptions.length === 0) {
     setStatus('Menu could not be loaded right now. Please refresh and try again.', 'is-error');
@@ -275,10 +359,12 @@ async function initOrderPage() {
 
   addOrderItem();
   attachOrderEvents();
+  updateOrderPaymentNote();
 
   addOrderItemBtn.addEventListener('click', () => {
     addOrderItem();
     refreshItemNames();
+    updateOrderPaymentNote();
   });
 
   orderForm.addEventListener('submit', submitOrder);

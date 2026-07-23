@@ -162,7 +162,7 @@ a {
   inset: 0;
   background:
     linear-gradient(120deg, rgba(29, 20, 13, 0.78), rgba(29, 20, 13, 0.43)),
-    url("assets/backgrouds/ny-togo-cup.jpg") center/cover no-repeat;
+    url("assets/backgrouds/ledge-cup-wide.avif") center/cover no-repeat;
 }
 
 .hero-content {
@@ -263,7 +263,7 @@ a {
 .textured {
   background:
     linear-gradient(to bottom, rgba(236, 226, 213, 0.55), rgba(247, 243, 236, 0.65)),
-    url("assets/backgrouds/coffee-beans.jpg") center/cover no-repeat;
+    url("assets/backgrouds/beans.avif") center/cover no-repeat;
 }
 
 .prose {
@@ -293,16 +293,19 @@ a {
   margin: 0;
   display: none;
   aspect-ratio: 4 / 3;
+  align-items: center;
+  justify-items: center;
 }
 
 .slide.is-active {
-  display: block;
+  display: grid;
 }
 
 .slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
 }
 
 .slide figcaption {
@@ -367,7 +370,7 @@ a {
 .menu-bg {
   background:
     linear-gradient(to bottom, rgba(247, 243, 236, 0.78), rgba(247, 243, 236, 0.74)),
-    url("assets/backgrouds/drink-coffee.jpg") center/cover no-repeat;
+    url("assets/backgrouds/held-cup-wide.avif") center/cover no-repeat;
 }
 
 .menu-grid {
@@ -588,6 +591,186 @@ a {
 
 .contact-list a {
   font-weight: 700;
+}
+
+.donation-card {
+  position: relative;
+  overflow: hidden;
+  margin-top: 1.3rem;
+  padding: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.28), transparent 28%),
+    linear-gradient(155deg, #1fd760, #0fa948 52%, #097133 100%);
+  color: #fff;
+  box-shadow: 0 22px 42px rgba(11, 111, 50, 0.24);
+}
+
+.donation-card::after {
+  content: '';
+  position: absolute;
+  inset: auto -18% -38% auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.donation-label,
+.donation-title,
+.donation-copy,
+.donation-handle {
+  margin: 0;
+}
+
+.donation-top,
+.donation-account {
+  position: relative;
+  z-index: 1;
+}
+
+.donation-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.donation-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.donation-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.82;
+}
+
+.donation-title {
+  margin-top: 0.45rem;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.4rem, 4vw, 1.85rem);
+  line-height: 1.08;
+}
+
+.donation-copy {
+  margin-top: 0.7rem;
+  max-width: 34ch;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  z-index: 1;
+}
+
+.donation-meta {
+  position: relative;
+  z-index: 1;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.8rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 18px;
+  background: rgba(5, 54, 24, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+}
+
+.donation-chip {
+  width: 42px;
+  height: 30px;
+  border-radius: 9px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.28));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+}
+
+.donation-account {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.donation-route {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.86rem;
+  text-decoration: none;
+}
+
+.donation-route:hover,
+.donation-route:focus-visible {
+  color: #fff;
+}
+
+.donation-handle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.donation-btn {
+  position: relative;
+  z-index: 1;
+  margin-top: 1rem;
+  width: 100%;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: #fff;
+  color: #0b6f32;
+}
+
+.donation-btn:hover,
+.donation-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.order-summary-section {
+  border: 1px solid rgba(73, 98, 74, 0.16);
+  border-radius: 18px;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(73, 98, 74, 0.08), rgba(255, 255, 255, 0.92));
+}
+
+.order-summary-label,
+.order-summary-amount,
+.order-summary-note {
+  margin: 0;
+}
+
+.order-summary-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sage-700);
+}
+
+.order-summary-amount {
+  margin-top: 0.35rem;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.6rem, 5vw, 2.3rem);
+  line-height: 1.08;
+}
+
+.order-summary-note {
+  margin-top: 0.55rem;
+  color: var(--coffee-700);
+}
+
+.order-summary-note a {
+  font-weight: 700;
+  text-underline-offset: 3px;
 }
 
 .contact-form {

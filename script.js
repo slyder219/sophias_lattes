@@ -5,7 +5,8 @@ const defaultLinks = {
   orderMarketplace: 'https://www.facebook.com/marketplace/',
   instagram: 'https://www.instagram.com/',
   facebook: 'https://www.facebook.com/',
-  contactEmail: 'sophlyde@gmail.com'
+  contactEmail: 'sophlyde@gmail.com',
+  cashapp: 'https://cash.app/$$Sophiaslattes'
 };
 
 let siteLinks = { ...defaultLinks };
@@ -26,18 +27,18 @@ if (navToggle && primaryNav) {
 
 const defaultSlides = [
   {
-    src: 'assets/slideshow/mug-table.jpg',
-    alt: 'Latte mug on a table',
+    src: 'assets/slideshow/outside-mug.avif',
+    alt: 'Latte mug outdoors',
     caption: 'Dorm-room roots, cafe-level care.'
   },
   {
-    src: 'assets/slideshow/matcha-outside.jpg',
-    alt: 'Iced matcha outside',
+    src: 'assets/slideshow/inside-mug.avif',
+    alt: 'Latte mug indoors',
     caption: 'Fresh ideas inspired by campus energy.'
   },
   {
-    src: 'assets/slideshow/latte-chocholate.jpg',
-    alt: 'Chocolate latte close-up',
+    src: 'assets/slideshow/top-down-mug.avif',
+    alt: 'Top-down view of a latte mug',
     caption: 'Crafted for simple daily joy.'
   }
 ];
@@ -67,10 +68,14 @@ function renderSlides() {
     figure.className = `slide${idx === 0 ? ' is-active' : ''}`;
 
     const image = document.createElement('img');
-    image.src = slide.src;
     image.alt = slide.alt;
+    image.dataset.src = slide.src;
     image.loading = idx === 0 ? 'eager' : 'lazy';
     image.decoding = 'async';
+    if (idx === 0) {
+      image.src = slide.src;
+      image.fetchPriority = 'high';
+    }
 
     const caption = document.createElement('figcaption');
     caption.textContent = slide.caption;
@@ -91,9 +96,33 @@ function renderSlides() {
   });
 }
 
-function updateSlideState() {
+function ensureSlideImage(index) {
+  const slides = document.querySelectorAll('.slide');
+  const slide = slides[index];
+  if (!slide) return;
+
+  const image = slide.querySelector('img');
+  if (!(image instanceof HTMLImageElement)) return;
+  if (image.src) return;
+
+  const src = image.dataset.src;
+  if (!src) return;
+
+  image.src = src;
+}
+
+function preloadNearbySlides(index) {
+  if (slideData.length < 2) return;
+
+  ensureSlideImage(index);
+  ensureSlideImage((index + 1) % slideData.length);
+}
+
+function updateSlideState(preloadAdjacent = false) {
   const slides = document.querySelectorAll('.slide');
   const dots = document.querySelectorAll('.slide-dot');
+
+  ensureSlideImage(currentIndex);
 
   slides.forEach((slide, idx) => {
     slide.classList.toggle('is-active', idx === currentIndex);
@@ -102,11 +131,15 @@ function updateSlideState() {
   dots.forEach((dot, idx) => {
     dot.setAttribute('aria-current', idx === currentIndex ? 'true' : 'false');
   });
+
+  if (preloadAdjacent) {
+    preloadNearbySlides(currentIndex);
+  }
 }
 
 function goToSlide(index) {
   currentIndex = (index + slideData.length) % slideData.length;
-  updateSlideState();
+  updateSlideState(true);
 }
 
 function nextSlide() {
@@ -237,6 +270,10 @@ function applyLinkConfig() {
     }
 
     anchor.href = value;
+
+    if (anchor.getAttribute('data-link-text') === 'url-without-protocol') {
+      anchor.textContent = value.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    }
   });
 }
 
