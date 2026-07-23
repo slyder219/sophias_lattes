@@ -176,6 +176,11 @@ function setStatus(message, tone) {
   orderStatus.classList.add(tone);
 }
 
+function getCaptchaResponse() {
+  const captchaField = orderForm ? orderForm.querySelector('textarea[name="h-captcha-response"]') : null;
+  return captchaField && typeof captchaField.value === 'string' ? captchaField.value.trim() : '';
+}
+
 async function submitOrder(event) {
   event.preventDefault();
 
@@ -188,6 +193,11 @@ async function submitOrder(event) {
   const orderItems = collectOrderItems();
   if (orderItems.length === 0) {
     setStatus('Add at least one menu item before submitting.', 'is-error');
+    return;
+  }
+
+  if (!getCaptchaResponse()) {
+    setStatus('Please complete the security check before submitting.', 'is-error');
     return;
   }
 

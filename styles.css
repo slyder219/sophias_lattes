@@ -566,6 +566,12 @@ a {
   opacity: 0;
 }
 
+.captcha-wrap {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.25rem;
+}
+
 .contact-wrap {
   align-items: start;
 }
