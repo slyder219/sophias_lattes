@@ -2,9 +2,7 @@ const navToggle = document.querySelector('.nav-toggle');
 const primaryNav = document.querySelector('#primary-nav');
 
 const defaultLinks = {
-  orderMarketplace: 'https://www.facebook.com/marketplace/',
   instagram: 'https://www.instagram.com/',
-  facebook: 'https://www.facebook.com/',
   contactEmail: 'sophlyde@gmail.com',
   cashapp: 'https://cash.app/$$Sophiaslattes'
 };
