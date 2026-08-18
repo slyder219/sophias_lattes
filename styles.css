@@ -168,7 +168,7 @@ a {
   inset: 0;
   background:
     linear-gradient(120deg, rgba(29, 20, 13, 0.78), rgba(29, 20, 13, 0.43)),
-    url("assets/backgrouds/ledge-cup-wide.avif") center/cover no-repeat;
+    url("/assets/backgrouds/ledge-cup-wide.avif") center/cover no-repeat;
 }
 
 .hero-content {
@@ -273,7 +273,7 @@ a {
 .textured.is-visible {
   background:
     linear-gradient(to bottom, rgba(236, 226, 213, 0.55), rgba(247, 243, 236, 0.65)),
-    url("assets/backgrouds/beans.avif") center/cover no-repeat;
+    url("/assets/backgrouds/beans.avif") center/cover no-repeat;
 }
 
 .prose {
@@ -401,7 +401,7 @@ a {
 .menu-bg.is-visible {
   background:
     linear-gradient(to bottom, rgba(247, 243, 236, 0.78), rgba(247, 243, 236, 0.74)),
-    url("assets/backgrouds/held-cup-wide.avif") center/cover no-repeat;
+    url("/assets/backgrouds/held-cup-wide.avif") center/cover no-repeat;
 }
 
 .menu-grid {
